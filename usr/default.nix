@@ -1,5 +1,9 @@
 { ... }: {
   imports = [ ./editor ./app ./shell ./wm ];
 
-  home.stateVersion = "25.11";
+  home = {
+    username = "hex";
+    homeDirectory = "/home/hex";
+    stateVersion = "25.11";
+  };
 }

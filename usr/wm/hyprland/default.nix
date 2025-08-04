@@ -1,8 +1,20 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+
+      enableXdgAutostart = true;
+      extraCommands = [
+        "systemctl --user stop hyprland-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
     xwayland.enable = true;
+
+    package = null;
+    portalPackage = null;
+
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "[float;tile] ghostty";
