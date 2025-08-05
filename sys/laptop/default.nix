@@ -1,5 +1,5 @@
 {
-  imports = [ ../common/default.nix ./hardware.nix ];
+  imports = [ ../common/default.nix ./hardware.nix ./service ];
 
   networking.hostName = "hex-laptop";
 }

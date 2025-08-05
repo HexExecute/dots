@@ -1,1 +1,1 @@
-{ imports = [ ./browser.nix ./terminal.nix ]; }
+{ imports = [ ./browser.nix ./terminal.nix ./desktop.nix ]; }

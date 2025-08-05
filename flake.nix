@@ -12,11 +12,26 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caelestia-cli = {
+      url = "github:caelestia-dots/cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, stylix, caelestia-cli
+    , caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
+
+      customPkgs = {
+        caelestia-cli = caelestia-cli.packages.${system}.default;
+        caelestia-shell = caelestia-shell.packages.${system}.default;
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -27,7 +42,17 @@
           inherit system;
           modules = [
             sysFile
-            { networking.hostName = hostName; }
+            {
+              networking.hostName = hostName;
+              virtualisation.vmVariant = {
+                virtualisation.memorySize = 4096;
+                virtualisation.graphics = true;
+
+                virtualisation.qemu.options = [ "-vga" "qxl" "-display" "sdl" ];
+
+                boot.kernelParams = [ "video=1920x1200" ];
+              };
+            }
 
             stylix.nixosModules.stylix
 
@@ -37,7 +62,11 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
 
+                backupFileExtension = "bak";
+
                 users.hex = import ./usr;
+
+                extraSpecialArgs = { inherit inputs customPkgs; };
               };
             }
           ];

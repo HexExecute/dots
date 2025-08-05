@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ./service ../theme ];
+  imports = [ ./hardware.nix ./service ../theme ];
 
   programs.hyprland.enable = true;
 
@@ -48,5 +48,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     initialPassword = "password";
+    shell = pkgs.nushell;
   };
 }

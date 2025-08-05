@@ -1,1 +1,1 @@
-{ }
+{ imports = [ ./power.nix ]; }

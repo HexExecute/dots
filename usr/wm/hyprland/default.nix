@@ -3,23 +3,20 @@
     enable = true;
     systemd = {
       enable = true;
-
       enableXdgAutostart = true;
-      extraCommands = [
-        "systemctl --user stop hyprland-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
     };
     xwayland.enable = true;
 
-    package = null;
-    portalPackage = null;
-
     settings = {
-      "$mod" = "SUPER";
+      "$mod" = "CTRL";
       "$terminal" = "[float;tile] ghostty";
 
-      monitor = [ ", preferred, 1920x1200, 1.0" ]; # Laptop default.
+      monitor = [ ", 1920x1200, 0x0, 1.0" ]; # Laptop default.
+
+      general = {
+        allow_tearing = false;
+        layout = "dwindle";
+      };
 
       decoration = {
         rounding = 10;
@@ -51,7 +48,17 @@
 
       gestures.workspace_swipe = true;
 
-      bind = [ "$mod, T, exec, $terminal" ];
+      bind = [
+        "$mod, R, global, caelestia:launcher"
+        "$mod, T, exec, $terminal"
+        "$mod, C, killactive"
+        "$mod, V, togglefloating"
+        "$mod, M, exit"
+      ];
+
+      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
+
+      exec-once = [ "caelestia shell" ];
     };
   };
 }
