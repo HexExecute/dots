@@ -26,7 +26,7 @@
     decibels
 
     # Communication
-    vesktop
+    equibop
 
     # Desktop utilities.
     parabolic
