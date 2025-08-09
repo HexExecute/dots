@@ -13,6 +13,7 @@
 
     # Audio utilities.
     pavucontrol
+    wiremix
     alsa-utils
     easyeffects
 
@@ -23,6 +24,9 @@
     clapper
     termusic
     decibels
+
+    # Communication
+    vesktop
 
     # Desktop utilities.
     parabolic

@@ -1,1 +1,4 @@
-{ imports = [ ./browser.nix ./terminal.nix ./desktop.nix ./utilities.nix ]; }
+{
+  imports =
+    [ ./browser.nix ./terminal.nix ./desktop.nix ./utilities.nix ./games.nix ];
+}

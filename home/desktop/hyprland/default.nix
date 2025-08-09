@@ -10,6 +10,7 @@
     settings = {
       "$mod" = "CTRL";
       "$terminal" = "[float;tile] ghostty";
+      "$browser" = "zen";
 
       monitor = [ ", 1920x1200, 0x0, 1.0" ]; # Laptop default.
 
@@ -66,8 +67,9 @@
 
       bind = [
         # Launchers.
-        "$mod, R, global, caelestia:launcher"
-        "$mod, T, exec, $terminal"
+        "$mod, A, exec, $terminal"
+        "$mod, S, global, caelestia:launcher"
+        "$mod, W, exec, $browser"
 
         # VIM movement keybinds.
         "$mod, H, movefocus, l"
@@ -76,10 +78,16 @@
         "$mod, L, movefocus, r"
 
         # Window controls.
-        "$mod, C, killactive"
+        "$mod, D, killactive"
         "$mod, V, togglefloating"
         "$mod, M, exit"
         "$mod, F, fullscreen"
+
+        # Workspaces.
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
       ];
 
       bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];

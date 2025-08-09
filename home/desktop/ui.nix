@@ -43,7 +43,7 @@
   home.file.".config/caelestia/shell.json".text = builtins.toJSON {
     general.apps = {
       terminal = [ "ghostty" ];
-      audio = [ "pavucontrol" ];
+      audio = [ "ghostty" "-e" "wiremix" ];
     };
     background.enabled = true;
     bar = {
