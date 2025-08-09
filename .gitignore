@@ -1,3 +1,20 @@
-result/
-hex-laptop.qcow2
-hex-desktop.qcow2
+# Nix build results.
+/result
+/result-*
+flake.lock
+
+# Nix garbage collector roots.
+/nix-*
+
+# Nix shell environments.
+.direnv/
+.envrc
+
+# Virtual machine images.
+*.qcow2
+
+# NixOS ISO builds.
+*.iso
+
+# Secrets.
+*.env

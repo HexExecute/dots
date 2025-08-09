@@ -1,6 +1,4 @@
 {
-  description = "hex.execute's NixOS config.";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -20,62 +18,56 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, stylix, caelestia-cli
-    , caelestia-shell, ... }@inputs:
+    , caelestia-shell, zen-browser, ... }@inputs:
     let
       system = "x86_64-linux";
+      username = "hex";
+      stateVersion = "25.11";
 
-      customPkgs = {
-        caelestia-cli = caelestia-cli.packages.${system}.default;
-        caelestia-shell = caelestia-shell.packages.${system}.default;
-      };
+      # nixpkgs = import nixpkgs {
+      #   inherit system;
+      #   config.allowUnfree = true;
+      #   overlays = [ (import ./overlays system inputs) ];
+      # };
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      makeNixosSystem = hostName: sysFile:
+      makeNixosSystem = hostName: systemFile:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            sysFile
-            {
-              networking.hostName = hostName;
-              virtualisation.vmVariant = {
-                virtualisation.memorySize = 4096;
-                virtualisation.graphics = true;
-
-                virtualisation.qemu.options = [ "-vga" "qxl" "-display" "sdl" ];
-
-                boot.kernelParams = [ "video=1920x1200" ];
-              };
-            }
-
+            systemFile
             stylix.nixosModules.stylix
-
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.overlays = [ (import ./overlays system inputs) ];
+              nixpkgs.config.allowUnfree = true;
+
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-
                 backupFileExtension = "bak";
-
-                users.hex = import ./usr;
-
-                extraSpecialArgs = { inherit inputs customPkgs; };
+                users.${username} = import ./home;
+                extraSpecialArgs = {
+                  inherit inputs hostName username stateVersion;
+                };
               };
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs hostName username stateVersion; };
         };
     in {
       nixosConfigurations = {
-        hex-laptop = makeNixosSystem "hex-laptop" ./sys/laptop;
-        hex-desktop = makeNixosSystem "hex-desktop" ./sys/desktop;
+        "${username}-laptop" =
+          makeNixosSystem "${username}-laptop" ./system/laptop;
+        "${username}-desktop" =
+          makeNixosSystem "${username}-desktop" ./system/desktop;
+        "${username}-vm" = makeNixosSystem "${username}-vm" ./system/vm;
       };
     };
 }

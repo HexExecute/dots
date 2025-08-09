@@ -1,0 +1,21 @@
+system: "base16"
+name: "Radio"
+author: "hex.execute"
+variant: "dark"
+palette:
+  base00: "#141318" # base
+  base01: "#141318" # mantle
+  base02: "#26252a" # surface0
+  base03: "#38373d" # surface1
+  base04: "#4a474e" # surface2
+  base05: "#e6e1e9" # text
+  base06: "#f8eff8" # rosewater
+  base07: "#cec6ff" # lavender
+  base08: "#cba2f9" # red
+  base09: "#e6c0f5" # peach
+  base0A: "#ffecf3" # yellow
+  base0B: "#d7deff" # green
+  base0C: "#d7deff" # teal
+  base0D: "#b9b5ff" # blue
+  base0E: "#c7b6ff" # mauve
+  base0F: "#ebddf2" # flamingo
