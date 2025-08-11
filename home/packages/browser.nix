@@ -43,15 +43,15 @@
         };
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           order = [
-            "DuckDuckGo"
-            "Google"
+            "ddg"
+            "google"
           ];
           engines = {
-            "DuckDuckGo".metaData.alias = "@dd";
-            "Google".metaData.alias = "@g";
-            "Bing".metaData.hidden = true;
+            ddg.metaData.alias = "@dd";
+            google.metaData.alias = "@g";
+            bing.metaData.hidden = true;
           };
         };
       };
@@ -92,4 +92,6 @@
       version = "3.0.0";
     };
   };
+
+  stylix.targets.zen-browser.profileNames = [ "default" ];
 }

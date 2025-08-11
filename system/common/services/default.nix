@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./power.nix
@@ -7,5 +8,7 @@
   ];
 
   security.polkit.enable = true;
+  environment.systemPackages = with pkgs; [ polkit_gnome ];
+
   services.gnome.gnome-keyring.enable = true;
 }
