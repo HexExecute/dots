@@ -1,4 +1,10 @@
 {
-  imports =
-    [ ./browser.nix ./terminal.nix ./desktop.nix ./utilities.nix ./games.nix ];
+  imports = [
+    ./browser.nix
+    ./terminal.nix
+    ./desktop.nix
+    ./utilities.nix
+    ./games.nix
+    ./communications.nix
+  ];
 }

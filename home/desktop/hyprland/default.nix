@@ -8,7 +8,7 @@
     xwayland.enable = true;
 
     settings = {
-      "$mod" = "CTRL";
+      "$mod" = "SUPER";
       "$terminal" = "[float;tile] ghostty";
       "$browser" = "zen";
 
@@ -90,11 +90,17 @@
         "$mod, 4, workspace, 4"
       ];
 
-      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
 
       exec-once = [ "caelestia shell" ];
 
-      workspace = [ "w[tv1], gapsout:0, gapsin:0" "f[1], gapsout:0, gapsin:0" ];
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
+      ];
     };
   };
 }

@@ -1,5 +1,17 @@
-{ lib, pkgs, stateVersion, hostName, username, ... }: {
-  imports = [ ./hardware.nix ./services ../theme ];
+{
+  lib,
+  pkgs,
+  stateVersion,
+  hostName,
+  username,
+  ...
+}:
+{
+  imports = [
+    ./hardware.nix
+    ./services
+    ../theme
+  ];
 
   programs.hyprland.enable = true;
 
@@ -42,8 +54,34 @@
   # The primary user.
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "disk"
+    ];
     initialPassword = "password";
     shell = pkgs.nushell;
   };
+
+  # Default download directory.
+  environment.variables = {
+    XDG_DOWNLOAD_DIR = "/home/${username}/downloads";
+  };
+
+  nix.settings.extra-experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  # Important system utilities.
+  environment.systemPackages = with pkgs; [
+    # Wayland.
+    wayland
+    wayland-protocols
+
+    # Graphics drivers.
+    mesa
+    vulkan-loader
+    vulkan-headers
+    vulkan-tools
+  ];
 }

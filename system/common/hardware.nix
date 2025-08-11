@@ -1,12 +1,21 @@
-{ lib, ... }: {
+{ pkgs, lib, ... }:
+{
   # Enable storage and USB support.
   boot = {
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+      ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [
+      "kvm-amd"
+      "timer_stats"
+      "msr"
+    ];
     extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

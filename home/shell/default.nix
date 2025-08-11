@@ -1,10 +1,19 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ tree wget ripgrep dust ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    tree
+    wget
+    ripgrep
+    dust
+    gnutar
+  ];
 
   programs = {
     nushell = {
       enable = true;
-      settings = { show_banner = false; };
+      settings = {
+        show_banner = false;
+      };
     };
 
     carapace = {
@@ -12,7 +21,18 @@
       enableNushellIntegration = true;
     };
 
-    git.enable = true;
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+
+    git = {
+      enable = true;
+      # TODO: Make username and email for git modular.
+      userName = "HexExecute";
+      userEmail = "hex.execute@gmail.com";
+    };
+    gh.enable = true;
 
     starship = {
       enable = true;
