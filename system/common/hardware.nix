@@ -36,5 +36,4 @@
 
   # Set the host platform to a sane default.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
 }

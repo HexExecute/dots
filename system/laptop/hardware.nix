@@ -14,14 +14,15 @@
   boot = {
     initrd = {
       availableKernelModules = [
-        "thunderbolt"
-        "amdgpu"
         "usb_storage"
         "sd_mod"
       ];
       kernelModules = [ ];
     };
-    kernelModules = [ "amdgpu" ];
+    kernelModules = [
+      "amdgpu"
+      "thunderbolt"
+    ];
     kernelParams = [
       "amd_pstate=active"
     ];

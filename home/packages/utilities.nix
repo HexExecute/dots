@@ -32,6 +32,7 @@
     # Tech utilities.
     impression
     coulomb
+    devtoolbox
 
     # Compatibility utilities.
     bottles
