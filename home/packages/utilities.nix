@@ -4,9 +4,13 @@
     # Desktop utilities.
     parabolic
     denaro
-    rnote
     resources
     btop
+
+    # Text utilities.
+    foliate
+    zathura
+    rnote
 
     # Audio utilities.
     pavucontrol
