@@ -48,8 +48,10 @@ in
 
   services.syncthing = {
     enable = true;
+    # guiAddress is localhost:8384.
+
     overrideFolders = true;
-    # guiAddress is 127.0.0.1:8384.
+    overrideDevices = true;
 
     settings = {
       folders = {

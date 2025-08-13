@@ -76,7 +76,7 @@
         occupiedLabel = "󰮯 ";
         rounded = true;
         showWindows = true;
-        shown = 4;
+        shown = 8;
       };
     };
     border = {

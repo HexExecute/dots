@@ -17,4 +17,3 @@
 
 # Secrets.
 *.env
-.sops.yaml

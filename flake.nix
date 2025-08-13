@@ -41,12 +41,6 @@
       username = "hex";
       stateVersion = "25.11";
 
-      # nixpkgs = import nixpkgs {
-      #   inherit system;
-      #   config.allowUnfree = true;
-      #   overlays = [ (import ./overlays system inputs) ];
-      # };
-
       makeNixosSystem =
         hostName: systemFile: homeFile:
         nixpkgs.lib.nixosSystem {

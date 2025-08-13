@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: /home/hex/.dotfiles
+created: 2025-08-12T23:51:24-04:00
