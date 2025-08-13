@@ -24,8 +24,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, stylix, caelestia-cli
-    , caelestia-shell, zen-browser, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      flake-utils,
+      stylix,
+      caelestia-cli,
+      caelestia-shell,
+      zen-browser,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       username = "hex";
@@ -37,7 +47,8 @@
       #   overlays = [ (import ./overlays system inputs) ];
       # };
 
-      makeNixosSystem = hostName: systemFile:
+      makeNixosSystem =
+        hostName: systemFile: homeFile:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -52,22 +63,33 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 backupFileExtension = "bak";
-                users.${username} = import ./home;
+                users.${username} = import homeFile;
                 extraSpecialArgs = {
-                  inherit inputs hostName username stateVersion;
+                  inherit
+                    inputs
+                    hostName
+                    username
+                    stateVersion
+                    ;
                 };
               };
             }
           ];
-          specialArgs = { inherit inputs hostName username stateVersion; };
+          specialArgs = {
+            inherit
+              inputs
+              hostName
+              username
+              stateVersion
+              ;
+          };
         };
-    in {
+    in
+    {
       nixosConfigurations = {
-        "${username}-laptop" =
-          makeNixosSystem "${username}-laptop" ./system/laptop;
-        "${username}-desktop" =
-          makeNixosSystem "${username}-desktop" ./system/desktop;
-        "${username}-vm" = makeNixosSystem "${username}-vm" ./system/vm;
+        "${username}-laptop" = makeNixosSystem "${username}-laptop" ./system/laptop ./home/laptop;
+        "${username}-desktop" = makeNixosSystem "${username}-desktop" ./system/desktop ./home/desktop;
+        "${username}-vm" = makeNixosSystem "${username}-vm" ./system/vm ./home/vm;
       };
     };
 }

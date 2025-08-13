@@ -5,6 +5,7 @@
     ./audio.nix
     ./gdm.nix
     ./disks.nix
+    ./flatpak.nix
   ];
 
   security.polkit.enable = true;

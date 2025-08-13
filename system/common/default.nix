@@ -62,11 +62,6 @@
     shell = pkgs.nushell;
   };
 
-  # Default download directory.
-  environment.variables = {
-    XDG_DOWNLOAD_DIR = "/home/${username}/downloads";
-  };
-
   nix.settings.extra-experimental-features = [
     "nix-command"
     "flakes"

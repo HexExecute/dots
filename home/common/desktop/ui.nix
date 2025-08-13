@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     caelestia-shell
     caelestia-cli
@@ -8,8 +9,13 @@
     cava
     jq
     fd
-    (pkgs.python3.withPackages
-      (python-pkgs: with python-pkgs; [ aubio pyaudio numpy ]))
+    (pkgs.python3.withPackages (
+      python-pkgs: with python-pkgs; [
+        aubio
+        pyaudio
+        numpy
+      ]
+    ))
     bluez
     ddcutil
     brightnessctl
@@ -43,7 +49,11 @@
   home.file.".config/caelestia/shell.json".text = builtins.toJSON {
     general.apps = {
       terminal = [ "ghostty" ];
-      audio = [ "ghostty" "-e" "wiremix" ];
+      audio = [
+        "ghostty"
+        "-e"
+        "wiremix"
+      ];
     };
     background.enabled = true;
     bar = {
@@ -104,7 +114,7 @@
     paths = {
       mediaGif = "root:/assets/bongocat.gif";
       sessionGif = "root:/assets/bongocat.gif";
-      wallpaperDir = "${../../assets/wallpapers}";
+      wallpaperDir = "${../../../assets/wallpapers}";
     };
     services = {
       weatherLocation = builtins.getEnv "LOCATION";
@@ -115,10 +125,23 @@
       dragThreshold = 30;
       vimKeybinds = true;
       commands = {
-        logout = [ "loginctl" "terminate-user" "" ];
-        shutdown = [ "systemctl" "poweroff" ];
-        hibernate = [ "systemctl" "hibernate" ];
-        reboot = [ "systemctl" "reboot" ];
+        logout = [
+          "loginctl"
+          "terminate-user"
+          ""
+        ];
+        shutdown = [
+          "systemctl"
+          "poweroff"
+        ];
+        hibernate = [
+          "systemctl"
+          "hibernate"
+        ];
+        reboot = [
+          "systemctl"
+          "reboot"
+        ];
       };
     };
   };

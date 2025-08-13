@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    nh
     nixfmt
+
     tree
     wget
     ripgrep

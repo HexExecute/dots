@@ -1,1 +1,6 @@
-{ imports = [ ./hyprland ./ui.nix ]; }
+{
+  imports = [
+    ../common
+    ./desktop
+  ];
+}

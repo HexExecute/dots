@@ -1,1 +1,7 @@
-{ imports = [ ../common/default.nix ./hardware.nix ./services ]; }
+{
+  imports = [
+    ../common
+    ./hardware.nix
+    ./services
+  ];
+}

@@ -10,6 +10,7 @@
     ./packages
     ./shell
     ./desktop
+    ./defaults.nix
 
     inputs.zen-browser.homeModules.beta
   ];

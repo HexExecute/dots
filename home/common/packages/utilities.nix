@@ -16,7 +16,9 @@
     pavucontrol
     wiremix
     alsa-utils
+
     easyeffects
+    deepfilternet
 
     # Media utilities.
     obs-studio

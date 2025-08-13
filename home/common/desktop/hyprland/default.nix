@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -12,7 +13,7 @@
       "$terminal" = "[float;tile] ghostty";
       "$browser" = "zen";
 
-      monitor = [ ", 1920x1200, 0x0, 1.0" ]; # Laptop default.
+      monitor = lib.mkDefault [ ", preferred, auto, 1.0" ];
 
       general = {
         allow_tearing = false;

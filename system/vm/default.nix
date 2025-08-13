@@ -1,5 +1,8 @@
 {
-  imports = [ ../common/default.nix ./hardware.nix ];
+  imports = [
+    ../common
+    ./hardware.nix
+  ];
 
   virtualisation.vmVariant = {
     virtualisation.memorySize = 8192;
