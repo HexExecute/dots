@@ -53,6 +53,7 @@ in
 
     settings = {
       folders = {
+        "${homeDir}/.dotfiles" = { };
         "${homeDir}/code" = { };
         "${homeDir}/media" = { };
         "${homeDir}/papers" = { };
