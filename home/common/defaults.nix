@@ -54,11 +54,39 @@ in
     overrideDevices = true;
 
     settings = {
+      devices = {
+        laptop = {
+          id = "NB7FO45-EBPXT6B-AMPRYXP-N6KDZE2-Q6PP4MP-QE3ZACM-35BHHU2-X2FIUAN";
+        };
+        desktop = {
+          id = "AWN33VP-RZ4X36Z-YRLX4GW-YUFFGAN-6LUUN7U-2BOA63F-7RCREK4-UMPKYAX";
+        };
+      };
       folders = {
-        "${homeDir}/.dotfiles" = { };
-        "${homeDir}/code" = { };
-        "${homeDir}/media" = { };
-        "${homeDir}/papers" = { };
+        "${homeDir}/.dotfiles" = {
+          devices = [
+            "laptop"
+            "desktop"
+          ];
+        };
+        "${homeDir}/code" = {
+          devices = [
+            "laptop"
+            "desktop"
+          ];
+        };
+        "${homeDir}/media" = {
+          devices = [
+            "laptop"
+            "desktop"
+          ];
+        };
+        "${homeDir}/papers" = {
+          devices = [
+            "laptop"
+            "desktop"
+          ];
+        };
       };
     };
   };
